@@ -3,11 +3,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { WorkspaceControls } from './components/WorkspaceControls';
-import { SynchronizedVisualizer } from './components/SynchronizedVisualizer';
+import {
+  PlaybackSpeed,
+  SynchronizedVisualizer,
+} from './components/SynchronizedVisualizer';
 import { PostExecutionSections } from './components/PostExecutionSections';
 import { AboutSection } from './components/AboutSection';
 import { Footer } from './components/Footer';
@@ -17,6 +20,13 @@ import {
   validateAlgorithmInput,
 } from './engine/algorithms';
 import { AlgorithmType, ApproachType, SimulationRun } from './types/algorithm';
+
+const SPEED_INTERVAL_MS: Record<PlaybackSpeed, number> = {
+  0.5: 2200,
+  1: 1250,
+  1.5: 800,
+  2: 480,
+};
 
 export default function App() {
   const [algorithm, setAlgorithm] = useState<AlgorithmType>('factorial');
@@ -29,6 +39,8 @@ export default function App() {
     buildSimulationRun(1, 'factorial', 'iterative', 5)
   );
   const [stepIndex, setStepIndex] = useState<number>(0);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [playbackSpeed, setPlaybackSpeed] = useState<PlaybackSpeed>(1);
 
   // Completed Runs counter: increments strictly once when a given runId reaches its final step
   const [completedRuns, setCompletedRuns] = useState<number>(0);
@@ -51,6 +63,28 @@ export default function App() {
       setCompletedRuns((count) => count + 1);
     }
   };
+
+  // Synchronized auto-play timer driven strictly by stepIndex + activeRun
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    const finalIdx = activeRun.steps.length - 1;
+    if (stepIndex >= finalIdx) {
+      setIsPlaying(false);
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      const next = Math.min(finalIdx, stepIndex + 1);
+      setStepIndex(next);
+      markRunCompletedIfFinal(next, activeRun);
+      if (next >= finalIdx) {
+        setIsPlaying(false);
+      }
+    }, SPEED_INTERVAL_MS[playbackSpeed]);
+
+    return () => window.clearTimeout(timer);
+  }, [isPlaying, stepIndex, playbackSpeed, activeRun]);
 
   const scrollToWorkspace = () => {
     const el = document.getElementById('workspace');
@@ -96,6 +130,7 @@ export default function App() {
     app: ApproachType,
     validatedValue: number
   ) => {
+    setIsPlaying(false);
     const runId = nextRunIdRef.current;
     nextRunIdRef.current += 1;
     const newRun = buildSimulationRun(runId, algo, app, validatedValue);
@@ -129,20 +164,36 @@ export default function App() {
   };
 
   const handlePrevious = () => {
+    setIsPlaying(false);
     setStepIndex((prev) => Math.max(0, prev - 1));
   };
 
   const handleNext = () => {
+    setIsPlaying(false);
     const next = Math.min(activeRun.steps.length - 1, stepIndex + 1);
     setStepIndex(next);
     markRunCompletedIfFinal(next, activeRun);
   };
 
+  const handleTogglePlay = () => {
+    if (isPlaying) {
+      setIsPlaying(false);
+      return;
+    }
+    // If already at the final step, Replay from step 0 cleanly
+    if (stepIndex >= activeRun.steps.length - 1) {
+      setStepIndex(0);
+    }
+    setIsPlaying(true);
+  };
+
   const handleReset = () => {
+    setIsPlaying(false);
     setStepIndex(0);
   };
 
   const handleJumpToFinal = () => {
+    setIsPlaying(false);
     const finalIdx = activeRun.steps.length - 1;
     setStepIndex(finalIdx);
     markRunCompletedIfFinal(finalIdx, activeRun);
@@ -185,8 +236,12 @@ export default function App() {
         <SynchronizedVisualizer
           run={activeRun}
           stepIndex={stepIndex}
+          isPlaying={isPlaying}
+          playbackSpeed={playbackSpeed}
           onPrevious={handlePrevious}
           onNext={handleNext}
+          onTogglePlay={handleTogglePlay}
+          onSpeedChange={setPlaybackSpeed}
           onReset={handleReset}
         />
 

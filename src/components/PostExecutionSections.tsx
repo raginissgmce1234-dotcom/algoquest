@@ -72,7 +72,7 @@ export const PostExecutionSections: React.FC<PostExecutionSectionsProps> = ({
 
           <span
             className={`inline-flex items-center gap-1.5 text-xs font-semibold ${
-              hasCompletedCurrentRun ? 'text-emerald-300' : 'text-zinc-400'
+              hasCompletedCurrentRun ? 'text-emerald-300' : 'text-zinc-200'
             }`}
           >
             <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
@@ -87,9 +87,9 @@ export const PostExecutionSections: React.FC<PostExecutionSectionsProps> = ({
         </div>
 
         {hasCompletedCurrentRun ? (
-          <div className="mt-5 flex flex-col gap-4 rounded-xl border border-emerald-500/35 bg-[#090F0E]/90 p-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-5 flex flex-col gap-4 rounded-xl border border-emerald-500/35 bg-[#090F0E] p-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-xs font-medium text-zinc-400">
+              <p className="text-xs font-medium text-zinc-200">
                 {run.finalSummaryLabel}
               </p>
               <div
@@ -99,13 +99,13 @@ export const PostExecutionSections: React.FC<PostExecutionSectionsProps> = ({
                 {run.finalResultDisplay}
               </div>
             </div>
-            <div className="shrink-0 text-xs text-zinc-400 font-mono">
+            <div className="shrink-0 text-xs text-zinc-200 font-mono">
               {run.steps.length} synchronized steps traced
             </div>
           </div>
         ) : (
-          <div className="mt-5 flex flex-col gap-4 rounded-xl border border-zinc-800 bg-[#090F0E]/70 p-5 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm text-zinc-300">
+          <div className="mt-5 flex flex-col gap-4 rounded-xl border border-zinc-800 bg-[#090F0E] p-5 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm text-zinc-100">
               Advance through the synchronized steps using <strong className="text-white">Next</strong> to
               reach the final step and verify the completed output.
             </p>
@@ -136,7 +136,7 @@ export const PostExecutionSections: React.FC<PostExecutionSectionsProps> = ({
               >
                 Generated C Program
               </h3>
-              <p className="text-xs text-zinc-400 font-mono mt-0.5">
+              <p className="text-xs text-zinc-200 font-mono mt-0.5">
                 {run.definition.cFileName} · Standard C (GCC / Clang compatible)
               </p>
             </div>
@@ -145,7 +145,7 @@ export const PostExecutionSections: React.FC<PostExecutionSectionsProps> = ({
           <button
             type="button"
             onClick={handleCopyCode}
-            className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-[#090F0E] px-4 py-2 text-xs font-semibold text-zinc-200 hover:border-emerald-400/60 hover:text-white transition-colors whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+            className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-[#090F0E] px-4 py-2 text-xs font-semibold text-zinc-100 hover:border-emerald-400/60 hover:text-white transition-colors whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
           >
             {copied ? (
               <>
@@ -162,11 +162,11 @@ export const PostExecutionSections: React.FC<PostExecutionSectionsProps> = ({
         </div>
 
         <div className="mt-5 overflow-x-auto rounded-xl border border-zinc-800/90 bg-[#060A09] p-4">
-          <pre className="font-mono text-xs sm:text-sm leading-6 text-zinc-200">
+          <pre className="font-mono text-xs sm:text-sm leading-6 text-zinc-100">
             <code>
               {cLines.map((line, i) => (
                 <div key={i} className="flex">
-                  <span className="mr-5 w-6 shrink-0 select-none text-right text-zinc-600 tabular-nums">
+                  <span className="mr-5 w-6 shrink-0 select-none text-right text-zinc-400 tabular-nums">
                     {i + 1}
                   </span>
                   <span className="whitespace-pre">{line}</span>
@@ -192,7 +192,7 @@ export const PostExecutionSections: React.FC<PostExecutionSectionsProps> = ({
             >
               Understanding the Logic
             </h3>
-            <p className="text-xs text-zinc-400 mt-0.5">
+            <p className="text-xs text-zinc-200 mt-0.5">
               {run.definition.title} — Beginner breakdown &amp; complexity analysis
             </p>
           </div>
@@ -204,7 +204,7 @@ export const PostExecutionSections: React.FC<PostExecutionSectionsProps> = ({
               <h4 className="font-display text-sm font-semibold text-emerald-300">
                 Core Intuition
               </h4>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+              <p className="mt-2 text-sm leading-relaxed text-zinc-100">
                 {run.definition.logicSummary}
               </p>
             </div>
@@ -213,7 +213,7 @@ export const PostExecutionSections: React.FC<PostExecutionSectionsProps> = ({
               <h4 className="font-display text-sm font-semibold text-emerald-300">
                 How Execution Works
               </h4>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+              <p className="mt-2 text-sm leading-relaxed text-zinc-100">
                 {run.definition.howItWorks}
               </p>
             </div>
@@ -222,7 +222,7 @@ export const PostExecutionSections: React.FC<PostExecutionSectionsProps> = ({
               <h4 className="font-display text-sm font-semibold text-emerald-300">
                 Why the Final Output Is Correct
               </h4>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+              <p className="mt-2 text-sm leading-relaxed text-zinc-100">
                 {run.definition.whyCorrect}
               </p>
             </div>
@@ -230,16 +230,16 @@ export const PostExecutionSections: React.FC<PostExecutionSectionsProps> = ({
 
           <div className="space-y-6 lg:col-span-5">
             <div>
-              <h4 className="font-display text-sm font-semibold text-zinc-200">
+              <h4 className="font-display text-sm font-semibold text-white">
                 Important Variables
               </h4>
-              <dl className="mt-3 divide-y divide-zinc-800/80 rounded-xl border border-zinc-800 bg-[#090F0E]/75">
+              <dl className="mt-3 divide-y divide-zinc-800/80 rounded-xl border border-zinc-800 bg-[#090F0E]">
                 {run.definition.variableRoles.map((item) => (
                   <div key={item.symbol} className="px-4 py-3">
                     <dt className="font-mono text-xs font-semibold text-emerald-300">
                       {item.symbol}
                     </dt>
-                    <dd className="mt-1 text-xs leading-relaxed text-zinc-300">
+                    <dd className="mt-1 text-xs leading-relaxed text-zinc-100">
                       {item.role}
                     </dd>
                   </div>
@@ -248,9 +248,9 @@ export const PostExecutionSections: React.FC<PostExecutionSectionsProps> = ({
             </div>
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1">
-              <div className="rounded-xl border border-emerald-500/30 bg-[#090F0E]/80 p-4">
+              <div className="rounded-xl border border-emerald-500/30 bg-[#090F0E] p-4">
                 <div className="flex items-center justify-between">
-                  <span className="flex items-center gap-2 text-xs font-semibold text-zinc-300">
+                  <span className="flex items-center gap-2 text-xs font-semibold text-zinc-100">
                     <Clock className="h-4 w-4 text-emerald-400" aria-hidden="true" />
                     <span>Time Complexity</span>
                   </span>
@@ -258,14 +258,14 @@ export const PostExecutionSections: React.FC<PostExecutionSectionsProps> = ({
                     {run.definition.timeComplexity}
                   </span>
                 </div>
-                <p className="mt-2 text-xs leading-relaxed text-zinc-400">
+                <p className="mt-2 text-xs leading-relaxed text-zinc-200">
                   {run.definition.timeExplanation}
                 </p>
               </div>
 
-              <div className="rounded-xl border border-amber-500/30 bg-[#090F0E]/80 p-4">
+              <div className="rounded-xl border border-amber-500/30 bg-[#090F0E] p-4">
                 <div className="flex items-center justify-between">
-                  <span className="flex items-center gap-2 text-xs font-semibold text-zinc-300">
+                  <span className="flex items-center gap-2 text-xs font-semibold text-zinc-100">
                     {run.approach === 'recursive' ? (
                       <Cpu className="h-4 w-4 text-amber-400" aria-hidden="true" />
                     ) : (
@@ -277,7 +277,7 @@ export const PostExecutionSections: React.FC<PostExecutionSectionsProps> = ({
                     {run.definition.spaceComplexity}
                   </span>
                 </div>
-                <p className="mt-2 text-xs leading-relaxed text-zinc-400">
+                <p className="mt-2 text-xs leading-relaxed text-zinc-200">
                   {run.definition.spaceExplanation}
                 </p>
               </div>

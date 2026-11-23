@@ -40,7 +40,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </span>
             </h1>
 
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-100 sm:text-lg">
               AlgoQuest transforms Factorial and Fibonacci in C from static textbook
               syntax into synchronized step-by-step execution. Watch variables shift,
               loop counters advance, and call stacks unwind in lockstep with human-readable
@@ -60,7 +60,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <button
                 type="button"
                 onClick={() => onQuickSelect('fibonacci', 'recursive')}
-                className="inline-flex items-center gap-2 rounded-xl border border-zinc-700/80 bg-[#101A18]/85 px-5 py-3 text-sm font-medium text-zinc-200 hover:border-amber-400/60 hover:text-white transition-colors duration-150 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                className="inline-flex items-center gap-2 rounded-xl border border-zinc-700/80 bg-[#101A18] px-5 py-3 text-sm font-medium text-white hover:border-amber-400/70 transition-colors duration-150 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
               >
                 <span>Explore Tail-Recursive Fibonacci</span>
               </button>
@@ -68,31 +68,31 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             <div className="mt-10 grid grid-cols-2 gap-4 border-t border-zinc-800/80 pt-6 sm:grid-cols-3">
               <div>
-                <p className="flex items-center gap-2 text-xs font-medium text-zinc-400">
+                <p className="flex items-center gap-2 text-xs font-semibold text-zinc-200">
                   <Layers className="h-3.5 w-3.5 text-emerald-400" aria-hidden="true" />
                   <span>Synchronized Trace</span>
                 </p>
-                <p className="mt-1 text-sm font-semibold text-zinc-100">
+                <p className="mt-1 text-sm font-semibold text-white">
                   Steps &amp; state in lockstep
                 </p>
               </div>
 
               <div>
-                <p className="flex items-center gap-2 text-xs font-medium text-zinc-400">
+                <p className="flex items-center gap-2 text-xs font-semibold text-zinc-200">
                   <GitBranch className="h-3.5 w-3.5 text-amber-400" aria-hidden="true" />
                   <span>Call Stack Clarity</span>
                 </p>
-                <p className="mt-1 text-sm font-semibold text-zinc-100">
+                <p className="mt-1 text-sm font-semibold text-white">
                   Descent &amp; return unwinding
                 </p>
               </div>
 
               <div className="col-span-2 sm:col-span-1">
-                <p className="flex items-center gap-2 text-xs font-medium text-zinc-400">
+                <p className="flex items-center gap-2 text-xs font-semibold text-zinc-200">
                   <Code2 className="h-3.5 w-3.5 text-teal-400" aria-hidden="true" />
                   <span>Verified C Source</span>
                 </p>
-                <p className="mt-1 text-sm font-semibold text-zinc-100">
+                <p className="mt-1 text-sm font-semibold text-white">
                   Compilable &amp; complexity-ready
                 </p>
               </div>
@@ -115,18 +115,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   <p className="mt-4 font-display text-lg font-semibold text-white">
                     AlgoQuest Execution Blueprint
                   </p>
-                  <p className="mt-1 text-sm text-zinc-400">
+                  <p className="mt-1 text-sm text-zinc-200">
                     Interactive Iterative &amp; Recursive Trace Lab
                   </p>
                 </div>
               )}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#090F0E]/75 via-transparent to-transparent"
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#090F0E]/85 via-transparent to-transparent"
               />
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-zinc-300">
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-white">
                 <span className="font-mono">Factorial (0–12) · Fibonacci (1–15)</span>
-                <span className="text-emerald-300 font-medium">C99 / C11</span>
+                <span className="text-emerald-300 font-semibold">C99 / C11</span>
               </div>
             </div>
           </div>

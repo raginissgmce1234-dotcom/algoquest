@@ -16,7 +16,7 @@ export const AboutSection: React.FC = () => {
           >
             How AlgoQuest Works
           </h2>
-          <p className="mt-2 text-sm leading-relaxed text-zinc-400 sm:text-base">
+          <p className="mt-2 text-sm leading-relaxed text-zinc-200 sm:text-base">
             Designed for college Data Structures students transitioning from conceptual pseudocode
             to clean, memory-aware C implementations.
           </p>
@@ -28,7 +28,7 @@ export const AboutSection: React.FC = () => {
             <h3 className="mt-4 font-display text-base font-bold text-white">
               01. Compare Iterative vs. Recursive
             </h3>
-            <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+            <p className="mt-2 text-sm leading-relaxed text-zinc-100">
               See the exact structural difference between constant-space <code className="font-mono text-emerald-300">O(1)</code> loops
               and stack-driven <code className="font-mono text-amber-300">O(n)</code> recursion, including
               linear tail-recursive Fibonacci without exponential blowup.
@@ -40,7 +40,7 @@ export const AboutSection: React.FC = () => {
             <h3 className="mt-4 font-display text-base font-bold text-white">
               02. Step Through Synced State
             </h3>
-            <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+            <p className="mt-2 text-sm leading-relaxed text-zinc-100">
               Move forward or backward one atomic step at a time. Every highlighted pseudocode
               line updates variable registers, sequence strips, and call stack frames together.
             </p>
@@ -51,7 +51,7 @@ export const AboutSection: React.FC = () => {
             <h3 className="mt-4 font-display text-base font-bold text-white">
               03. Connect Logic to C Code
             </h3>
-            <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+            <p className="mt-2 text-sm leading-relaxed text-zinc-100">
               Once you verify the trace, inspect and copy the matching compilable C program along
               with variable roles, correctness invariants, and time/space complexity.
             </p>

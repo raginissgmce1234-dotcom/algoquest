@@ -18,7 +18,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onStartLearning }) => {
 
         <nav
           aria-label="Primary navigation"
-          className="hidden md:flex items-center gap-7 text-sm font-medium text-zinc-300"
+          className="hidden md:flex items-center gap-7 text-sm font-medium text-zinc-100"
         >
           <a
             href="#home"
