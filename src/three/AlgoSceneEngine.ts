@@ -129,10 +129,10 @@ export class AlgoSceneEngine {
     this.renderer.domElement.style.outline = 'none';
     container.appendChild(this.renderer.domElement);
 
-    // Deep forest green laboratory environment
+    // Deep midnight navy laboratory environment
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x051610);
-    this.scene.fog = new THREE.FogExp2(0x051610, 0.016);
+    this.scene.background = new THREE.Color(0x060b18);
+    this.scene.fog = new THREE.FogExp2(0x060b18, 0.015);
 
     this.camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 140);
     this.camera.position.set(1.2, 5.2, 12.8);
@@ -158,8 +158,8 @@ export class AlgoSceneEngine {
     roomEnv.dispose();
     pmrem.dispose();
 
-    // Balanced studio lighting rig with warm key + cool mint-teal fill + emerald rim
-    const hemi = new THREE.HemisphereLight(0x6ee7b7, 0x04120c, 0.95);
+    // Balanced studio lighting rig with warm key + cool sky-indigo fill + violet rim
+    const hemi = new THREE.HemisphereLight(0x7dd3fc, 0x050a18, 0.95);
     this.scene.add(hemi);
 
     const keyLight = new THREE.DirectionalLight(0xfffbeb, 2.15);
@@ -178,11 +178,11 @@ export class AlgoSceneEngine {
     }
     this.scene.add(keyLight);
 
-    const rimLight = new THREE.DirectionalLight(0x10b981, 1.25);
+    const rimLight = new THREE.DirectionalLight(0x818cf8, 1.3);
     rimLight.position.set(-8, 6, -7);
     this.scene.add(rimLight);
 
-    const fillPoint = new THREE.PointLight(0x14b8a6, 1.35, 26, 1.4);
+    const fillPoint = new THREE.PointLight(0x22d3ee, 1.35, 26, 1.4);
     fillPoint.position.set(0, 5.5, 5.5);
     this.scene.add(fillPoint);
 
@@ -197,8 +197,8 @@ export class AlgoSceneEngine {
     // Subtle glowing data pulse orb
     const orbGeo = new THREE.SphereGeometry(0.12, 16, 16);
     const orbMat = new THREE.MeshStandardMaterial({
-      color: 0xbef264,
-      emissive: 0x4ade80,
+      color: 0xfde047,
+      emissive: 0x22d3ee,
       emissiveIntensity: 2.0,
       roughness: 0.15,
       metalness: 0.1,
@@ -235,10 +235,10 @@ export class AlgoSceneEngine {
     floor.receiveShadow = !this.isSoftwareGl;
     this.scene.add(floor);
 
-    // Wide forest-emerald metallic stage disk
+    // Wide sapphire metallic stage disk
     const plinthGeo = new THREE.CylinderGeometry(7.2, 7.65, 0.16, 64);
     const plinthMat = new THREE.MeshStandardMaterial({
-      color: 0x0b241b,
+      color: 0x0b1733,
       roughness: 0.45,
       metalness: 0.65,
     });
@@ -247,11 +247,11 @@ export class AlgoSceneEngine {
     plinth.receiveShadow = !this.isSoftwareGl;
     this.scene.add(plinth);
 
-    // Outer calibration ring (emerald)
+    // Outer calibration ring (electric cyan)
     const outerRingGeo = new THREE.TorusGeometry(7.32, 0.03, 12, 84);
     const outerRingMat = new THREE.MeshStandardMaterial({
-      color: 0x10b981,
-      emissive: 0x059669,
+      color: 0x06b6d4,
+      emissive: 0x0891b2,
       emissiveIntensity: 0.9,
       roughness: 0.25,
       metalness: 0.8,
@@ -261,12 +261,12 @@ export class AlgoSceneEngine {
     outerRing.position.y = 0.17;
     this.scene.add(outerRing);
 
-    // Inner calibration ring (teal)
+    // Inner calibration ring (indigo-violet)
     const innerRingGeo = new THREE.TorusGeometry(5.1, 0.018, 10, 72);
     const innerRingMat = new THREE.MeshStandardMaterial({
-      color: 0x14b8a6,
-      emissive: 0x0d9488,
-      emissiveIntensity: 0.65,
+      color: 0x818cf8,
+      emissive: 0x6366f1,
+      emissiveIntensity: 0.7,
       roughness: 0.3,
       metalness: 0.75,
     });
@@ -426,15 +426,15 @@ export class AlgoSceneEngine {
     const group = new THREE.Group();
     const disposables: Array<{ dispose: () => void }> = [];
 
-    const accentHex = highlighted ? '#4ADE80' : '#6EE7B7';
-    const valueHex = highlighted ? '#BEF264' : '#F8FAFC';
+    const accentHex = highlighted ? '#22D3EE' : '#7DD3FC';
+    const valueHex = highlighted ? '#FDE047' : '#FFFFFF';
 
     // 1. Elevated Terrace Column Support down to stage (when y > 0.2)
     if (y > 0.25) {
       const colH = y + 0.05;
       const colGeo = new THREE.CylinderGeometry(0.45, 0.58, colH, 16);
       const colMat = new THREE.MeshStandardMaterial({
-        color: 0x092018,
+        color: 0x09132b,
         roughness: 0.5,
         metalness: 0.7,
       });
@@ -444,10 +444,10 @@ export class AlgoSceneEngine {
       disposables.push(colGeo, colMat);
     }
 
-    // 2. Brushed Teal-Emerald Plinth
+    // 2. Brushed Sapphire Plinth
     const baseGeo = createBeveledSlabGeometry(2.12, 0.16, 1.32, 0.08, 0.025);
     const baseMat = new THREE.MeshStandardMaterial({
-      color: 0x0d3025,
+      color: 0x0f2147,
       roughness: 0.32,
       metalness: 0.8,
     });
@@ -458,7 +458,7 @@ export class AlgoSceneEngine {
     // 3. Main Beveled Chassis
     const bodyGeo = createBeveledSlabGeometry(1.94, 1.22, 1.06, 0.1, 0.035);
     const bodyMat = new THREE.MeshPhysicalMaterial({
-      color: highlighted ? 0x11422e : 0x0c2b21,
+      color: highlighted ? 0x123266 : 0x0c1e42,
       roughness: 0.35,
       metalness: 0.5,
       clearcoat: 0.35,
@@ -470,8 +470,8 @@ export class AlgoSceneEngine {
     bodyMesh.receiveShadow = !this.isSoftwareGl;
     group.add(bodyMesh);
 
-    // 4. Glowing Top Trim Rail (Bright Neon Green vs Teal)
-    const trimColor = new THREE.Color(highlighted ? 0x4ade80 : 0x14b8a6);
+    // 4. Glowing Top Trim Rail (Electric Cyan vs Indigo)
+    const trimColor = new THREE.Color(highlighted ? 0x22d3ee : 0x6366f1);
     const trimGeo = new THREE.BoxGeometry(1.98, 0.075, 1.1);
     const trimMat = new THREE.MeshStandardMaterial({
       color: trimColor,
@@ -538,7 +538,7 @@ export class AlgoSceneEngine {
 
     const frameGeo = createBeveledSlabGeometry(5.5, 1.06, 0.24, 0.09, 0.028);
     const frameMat = new THREE.MeshPhysicalMaterial({
-      color: 0x0a251c,
+      color: 0x0d1d42,
       roughness: 0.32,
       metalness: 0.72,
       clearcoat: 0.3,
@@ -665,13 +665,13 @@ export class AlgoSceneEngine {
       const group = new THREE.Group();
       const disposables: Array<{ dispose: () => void }> = [];
 
-      const accentHex = item.isNewest ? '#4ADE80' : baseAccentHex;
-      const valueHex = item.isNewest ? '#BEF264' : '#FFFFFF';
+      const accentHex = item.isNewest ? '#22D3EE' : baseAccentHex;
+      const valueHex = item.isNewest ? '#FDE047' : '#FFFFFF';
 
       if (terraceY > 0.1) {
         const riserGeo = new THREE.BoxGeometry(0.92, terraceY, 0.92);
         const riserMat = new THREE.MeshStandardMaterial({
-          color: 0x071c15,
+          color: 0x08132b,
           roughness: 0.6,
           metalness: 0.5,
         });
@@ -683,7 +683,7 @@ export class AlgoSceneEngine {
 
       const padGeo = new THREE.BoxGeometry(0.96, 0.1, 0.96);
       const padMat = new THREE.MeshStandardMaterial({
-        color: 0x0c2e22,
+        color: 0x0f2147,
         roughness: 0.38,
         metalness: 0.72,
       });
@@ -692,9 +692,9 @@ export class AlgoSceneEngine {
       group.add(pad);
 
       const barGeo = createBeveledSlabGeometry(0.84, barH, 0.84, 0.07, 0.022);
-      const colColor = new THREE.Color(item.isNewest ? 0x4ade80 : 0x10b981);
+      const colColor = new THREE.Color(item.isNewest ? 0x22d3ee : 0x3b82f6);
       const barMat = new THREE.MeshPhysicalMaterial({
-        color: item.isNewest ? 0x145338 : 0x0d3527,
+        color: item.isNewest ? 0x0e4463 : 0x0f2c59,
         emissive: colColor,
         emissiveIntensity: item.isNewest ? 0.5 : 0.14,
         roughness: 0.3,
@@ -764,8 +764,8 @@ export class AlgoSceneEngine {
       this.createOperationBanner(
         'MULTIPLICATION UPDATE',
         `${left.toLocaleString()} × ${right.toLocaleString()} = ${result.toLocaleString()}`,
-        '#4ADE80',
-        '#BEF264',
+        '#22D3EE',
+        '#FDE047',
         0,
         4.65,
         varZ
@@ -775,7 +775,7 @@ export class AlgoSceneEngine {
           new THREE.Vector3(startX + 2 * spacing, varY + 1.55, varZ),
           new THREE.Vector3(startX + 1 * spacing, varY + 1.65, varZ),
           0.95,
-          '#4ADE80',
+          '#22D3EE',
           true
         );
       }
@@ -784,7 +784,7 @@ export class AlgoSceneEngine {
       this.createOperationBanner(
         'SLIDING WINDOW SHIFT',
         `next = ${prevA} + ${prevB} = ${nextVal}   |   a←${newA}, b←${newB}`,
-        '#BEF264',
+        '#A78BFA',
         '#FFFFFF',
         0,
         4.65,
@@ -795,14 +795,14 @@ export class AlgoSceneEngine {
           new THREE.Vector3(startX + 2 * spacing, varY + 1.55, varZ),
           new THREE.Vector3(startX + 1 * spacing, varY + 1.65, varZ),
           0.9,
-          '#4ADE80',
+          '#22D3EE',
           true
         );
         this.createFlowArc(
           new THREE.Vector3(startX + 3 * spacing, varY + 1.55, varZ),
           new THREE.Vector3(startX + 2 * spacing, varY + 1.65, varZ),
           0.9,
-          '#14B8A6',
+          '#A78BFA',
           false
         );
       }
@@ -810,8 +810,8 @@ export class AlgoSceneEngine {
       this.createOperationBanner(
         'EXECUTION COMPLETE',
         step.stepOutputText,
-        '#4ADE80',
-        '#BEF264',
+        '#22D3EE',
+        '#FDE047',
         0,
         4.65,
         varZ
@@ -820,7 +820,7 @@ export class AlgoSceneEngine {
       this.createOperationBanner(
         run.definition.title.toUpperCase(),
         step.phaseLabel,
-        '#6EE7B7',
+        '#7DD3FC',
         '#FFFFFF',
         0,
         4.65,
@@ -839,7 +839,7 @@ export class AlgoSceneEngine {
           isNewest: i === step.factorsUsed!.length - 1 && step.phase === 'compute',
         })),
       ];
-      this.createSequenceTowers(items, 0, 0.95, 7, '#6EE7B7');
+      this.createSequenceTowers(items, 0, 0.95, 7, '#7DD3FC');
     }
 
     if (run.algorithm === 'fibonacci' && step.sequenceOutput && step.sequenceOutput.length > 0) {
@@ -849,7 +849,7 @@ export class AlgoSceneEngine {
         display: String(val),
         isNewest: idx === step.sequenceOutput!.length - 1 && step.phase === 'output',
       }));
-      this.createSequenceTowers(items, 0, 0.95, 8, '#14B8A6');
+      this.createSequenceTowers(items, 0, 0.95, 8, '#818CF8');
     }
   }
 
@@ -873,7 +873,7 @@ export class AlgoSceneEngine {
     const baseDisposables: Array<{ dispose: () => void }> = [];
     const anchorGeo = createBeveledSlabGeometry(4.45, 0.74, 1.65, 0.1, 0.03);
     const anchorMat = new THREE.MeshPhysicalMaterial({
-      color: 0x0a291f,
+      color: 0x0c1e45,
       roughness: 0.35,
       metalness: 0.75,
       clearcoat: 0.3,
@@ -889,8 +889,8 @@ export class AlgoSceneEngine {
           frames.length === 0 && step.isFinal
             ? `main() ← ${step.stepOutputText ?? 'Returned'}`
             : 'main() stack base',
-        accentHex: frames.length === 0 && step.isFinal ? '#4ADE80' : '#14B8A6',
-        equationHex: frames.length === 0 && step.isFinal ? '#BEF264' : '#F8FAFC',
+        accentHex: frames.length === 0 && step.isFinal ? '#22D3EE' : '#818CF8',
+        equationHex: frames.length === 0 && step.isFinal ? '#FDE047' : '#FFFFFF',
       },
       this.maxAnisotropy
     );
@@ -931,42 +931,42 @@ export class AlgoSceneEngine {
       const palette =
         frame.status === 'base'
           ? {
-              accent: '#BEF264',
-              headerBg: 'rgba(163, 230, 53, 0.18)',
-              top: '#183614',
-              bottom: '#0A1A0B',
+              accent: '#FDE047',
+              headerBg: 'rgba(250, 204, 21, 0.18)',
+              top: '#251C4D',
+              bottom: '#0E0B26',
               statusText: 'BASE CASE',
-              exprHex: '#BEF264',
-              bodyColor: 0x163d1b,
+              exprHex: '#FDE047',
+              bodyColor: 0x2a1f59,
             }
           : frame.status === 'returning'
             ? {
-                accent: '#4ADE80',
-                headerBg: 'rgba(74, 222, 128, 0.18)',
-                top: '#0D3B28',
-                bottom: '#071D14',
+                accent: '#22D3EE',
+                headerBg: 'rgba(34, 211, 238, 0.18)',
+                top: '#0D3354',
+                bottom: '#07172B',
                 statusText: 'UNWINDING',
-                exprHex: '#BEF264',
-                bodyColor: 0x124730,
+                exprHex: '#FDE047',
+                bodyColor: 0x0f3b61,
               }
             : isTop
               ? {
-                  accent: '#4ADE80',
-                  headerBg: 'rgba(52, 211, 153, 0.18)',
-                  top: '#0E3828',
-                  bottom: '#071D15',
+                  accent: '#38BDF8',
+                  headerBg: 'rgba(56, 189, 248, 0.2)',
+                  top: '#113063',
+                  bottom: '#071630',
                   statusText: 'ACTIVE FRAME',
-                  exprHex: '#F8FAFC',
-                  bodyColor: 0x11422e,
+                  exprHex: '#FFFFFF',
+                  bodyColor: 0x13356b,
                 }
               : {
-                  accent: '#6EE7B7',
-                  headerBg: 'rgba(20, 184, 166, 0.14)',
-                  top: '#09251D',
-                  bottom: '#061510',
+                  accent: '#A5B4FC',
+                  headerBg: 'rgba(129, 140, 248, 0.16)',
+                  top: '#0D1B3F',
+                  bottom: '#070E24',
                   statusText: 'WAITING',
-                  exprHex: '#F8FAFC',
-                  bodyColor: 0x0b261e,
+                  exprHex: '#FFFFFF',
+                  bodyColor: 0x0c1a3a,
                 };
 
       const group = new THREE.Group();
@@ -1057,7 +1057,7 @@ export class AlgoSceneEngine {
         if (isCrossCol) {
           const fromPt = new THREE.Vector3(prevPos.x + 2.25, prevPos.y, prevPos.z);
           const toPt = new THREE.Vector3(x - 2.25, y, z);
-          this.createFlowArc(fromPt, toPt, 0.55, '#14B8A6', isTop);
+          this.createFlowArc(fromPt, toPt, 0.55, '#A78BFA', isTop);
         } else {
           const sideX = x + 2.28;
           const fromPt = new THREE.Vector3(sideX, isUnwindStep ? y : prevPos.y, z);
@@ -1066,7 +1066,7 @@ export class AlgoSceneEngine {
             fromPt,
             toPt,
             0,
-            isUnwindStep ? '#BEF264' : '#4ADE80',
+            isUnwindStep ? '#FDE047' : '#38BDF8',
             isTop
           );
         }
@@ -1083,8 +1083,8 @@ export class AlgoSceneEngine {
       this.createOperationBanner(
         'UNWIND RETURN VALUE',
         `${left.toLocaleString()} × ${right.toLocaleString()} = ${result.toLocaleString()}`,
-        '#4ADE80',
-        '#BEF264',
+        '#22D3EE',
+        '#FDE047',
         bannerX,
         bannerY,
         0.2
@@ -1100,7 +1100,7 @@ export class AlgoSceneEngine {
         this.createOperationBanner(
           'TAIL CALL PARAMETERS',
           `(${t.fromRem}, ${t.fromA}, ${t.fromB}) → (${t.toRem}, ${t.toA}, ${t.toB})`,
-          '#BEF264',
+          '#A78BFA',
           '#FFFFFF',
           sideX,
           4.35,
@@ -1110,7 +1110,7 @@ export class AlgoSceneEngine {
         this.createOperationBanner(
           'BASE CASE REACHED',
           'remaining == 0 → return',
-          '#BEF264',
+          '#FDE047',
           '#FFFFFF',
           sideX,
           4.35,
@@ -1120,8 +1120,8 @@ export class AlgoSceneEngine {
         this.createOperationBanner(
           'FINAL FIBONACCI SEQUENCE',
           step.stepOutputText,
-          '#4ADE80',
-          '#BEF264',
+          '#22D3EE',
+          '#FDE047',
           sideX,
           4.35,
           -0.25
@@ -1130,7 +1130,7 @@ export class AlgoSceneEngine {
         this.createOperationBanner(
           'TAIL-RECURSIVE HELPER',
           step.phaseLabel,
-          '#6EE7B7',
+          '#7DD3FC',
           '#FFFFFF',
           sideX,
           4.35,
@@ -1145,7 +1145,7 @@ export class AlgoSceneEngine {
           display: String(val),
           isNewest: idx === step.sequenceOutput!.length - 1 && step.phase === 'output',
         }));
-        this.createSequenceTowers(items, sideX, 0.55, 4, '#14B8A6');
+        this.createSequenceTowers(items, sideX, 0.55, 4, '#818CF8');
       }
     }
   }

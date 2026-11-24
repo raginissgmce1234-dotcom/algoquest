@@ -8,7 +8,7 @@ export const AboutSection: React.FC = () => {
       aria-labelledby="about-heading"
       className="mx-auto max-w-6xl px-4 pt-10 pb-14 sm:px-6"
     >
-      <div className="border-t border-zinc-800/80 pt-10">
+      <div className="border-t border-slate-800/80 pt-10">
         <div className="max-w-2xl">
           <h2
             id="about-heading"
@@ -16,27 +16,27 @@ export const AboutSection: React.FC = () => {
           >
             How AlgoQuest Works
           </h2>
-          <p className="mt-2 text-sm leading-relaxed text-zinc-200 sm:text-base">
+          <p className="mt-2 text-sm leading-relaxed text-zinc-100 sm:text-base">
             Designed for college Data Structures students transitioning from conceptual pseudocode
             to clean, memory-aware C implementations.
           </p>
         </div>
 
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="rounded-2xl border border-zinc-800/90 glass-panel p-6">
-            <GitCompare className="h-5 w-5 text-emerald-400" aria-hidden="true" />
+          <div className="rounded-2xl border border-sky-900/70 glass-panel p-6">
+            <GitCompare className="h-5 w-5 text-cyan-400" aria-hidden="true" />
             <h3 className="mt-4 font-display text-base font-bold text-white">
               01. Compare Iterative vs. Recursive
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-zinc-100">
-              See the exact structural difference between constant-space <code className="font-mono text-emerald-300">O(1)</code> loops
-              and stack-driven <code className="font-mono text-amber-300">O(n)</code> recursion, including
+              See the exact structural difference between constant-space <code className="font-mono text-cyan-300">O(1)</code> loops
+              and stack-driven <code className="font-mono text-violet-300">O(n)</code> recursion, including
               linear tail-recursive Fibonacci without exponential blowup.
             </p>
           </div>
 
-          <div className="rounded-2xl border border-zinc-800/90 glass-panel p-6">
-            <Eye className="h-5 w-5 text-teal-400" aria-hidden="true" />
+          <div className="rounded-2xl border border-sky-900/70 glass-panel p-6">
+            <Eye className="h-5 w-5 text-sky-400" aria-hidden="true" />
             <h3 className="mt-4 font-display text-base font-bold text-white">
               02. Step Through Synced State
             </h3>
@@ -46,8 +46,8 @@ export const AboutSection: React.FC = () => {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-zinc-800/90 glass-panel p-6">
-            <Code2 className="h-5 w-5 text-amber-400" aria-hidden="true" />
+          <div className="rounded-2xl border border-sky-900/70 glass-panel p-6">
+            <Code2 className="h-5 w-5 text-violet-400" aria-hidden="true" />
             <h3 className="mt-4 font-display text-base font-bold text-white">
               03. Connect Logic to C Code
             </h3>

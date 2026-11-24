@@ -6,11 +6,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { WorkspaceControls } from './components/WorkspaceControls';
 import {
+  AlgorithmWorkspace,
   PlaybackSpeed,
-  SynchronizedVisualizer,
-} from './components/SynchronizedVisualizer';
+} from './components/AlgorithmWorkspace';
 import { PostExecutionSections } from './components/PostExecutionSections';
 import { AboutSection } from './components/AboutSection';
 import { Footer } from './components/Footer';
@@ -200,7 +199,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#090F0E] text-zinc-100">
+    <div className="min-h-screen flex flex-col bg-[#060B18] text-zinc-100">
       <Navbar onStartLearning={scrollToWorkspace} />
 
       <main className="flex-1">
@@ -209,35 +208,23 @@ export default function App() {
           onQuickSelect={handleQuickSelectFromHero}
         />
 
-        <WorkspaceControls
+        <AlgorithmWorkspace
           algorithm={algorithm}
           approach={approach}
           rawInput={rawInput}
           inputError={inputError}
           definition={currentDefinition}
           completedRuns={completedRuns}
+          isPendingConfigChange={isPendingConfigChange}
+          run={activeRun}
+          stepIndex={stepIndex}
+          isPlaying={isPlaying}
+          playbackSpeed={playbackSpeed}
           onSelectAlgorithm={handleSelectAlgorithm}
           onSelectApproach={handleSelectApproach}
           onInputChange={handleInputChange}
           onPresetClick={handlePresetClick}
           onGenerate={handleGenerate}
-        />
-
-        {isPendingConfigChange && (
-          <div className="mx-auto max-w-6xl px-4 pb-2 sm:px-6">
-            <p className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-xs text-emerald-200">
-              Selection updated to <strong>{currentDefinition.title}</strong> with input{' '}
-              <span className="font-mono">{rawInput.trim() || '—'}</span>. Click{' '}
-              <strong>Generate Visualization</strong> to trace this configuration.
-            </p>
-          </div>
-        )}
-
-        <SynchronizedVisualizer
-          run={activeRun}
-          stepIndex={stepIndex}
-          isPlaying={isPlaying}
-          playbackSpeed={playbackSpeed}
           onPrevious={handlePrevious}
           onNext={handleNext}
           onTogglePlay={handleTogglePlay}

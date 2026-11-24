@@ -2,24 +2,24 @@ import React from 'react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="border-t border-zinc-800/80 bg-[#070B0A]">
-      <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-4 py-8 text-xs text-zinc-200 sm:flex-row sm:items-center sm:px-6">
+    <footer className="border-t border-slate-800/90 bg-[#040812]">
+      <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-4 py-8 text-xs text-zinc-100 sm:flex-row sm:items-center sm:px-6">
         <div className="flex items-center gap-3">
           <span className="font-display text-sm font-bold text-white">
-            Algo<span className="text-emerald-400">Quest</span>
+            Algo<span className="text-cyan-400">Quest</span>
           </span>
           <span aria-hidden="true">·</span>
           <span>Understand. Visualize. Master.</span>
         </div>
 
         <div className="flex flex-wrap items-center gap-6">
-          <a href="#home" className="hover:text-emerald-300 transition-colors">
+          <a href="#home" className="hover:text-cyan-300 transition-colors">
             Home
           </a>
-          <a href="#workspace" className="hover:text-emerald-300 transition-colors">
+          <a href="#workspace" className="hover:text-cyan-300 transition-colors">
             Learn Algorithms
           </a>
-          <a href="#about" className="hover:text-emerald-300 transition-colors">
+          <a href="#about" className="hover:text-cyan-300 transition-colors">
             About
           </a>
         </div>

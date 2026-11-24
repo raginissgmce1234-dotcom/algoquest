@@ -74,7 +74,7 @@ export function createGridFloorTexture(maxAnisotropy: number): THREE.CanvasTextu
   canvas.height = size;
   const ctx = canvas.getContext('2d')!;
 
-  ctx.fillStyle = '#051610';
+  ctx.fillStyle = '#060B18';
   ctx.fillRect(0, 0, size, size);
 
   const grad = ctx.createRadialGradient(
@@ -85,10 +85,10 @@ export function createGridFloorTexture(maxAnisotropy: number): THREE.CanvasTextu
     size / 2,
     size * 0.54
   );
-  grad.addColorStop(0, 'rgba(16, 185, 129, 0.22)');
-  grad.addColorStop(0.45, 'rgba(20, 184, 166, 0.10)');
-  grad.addColorStop(0.85, 'rgba(5, 22, 16, 0.02)');
-  grad.addColorStop(1, 'rgba(5, 22, 16, 0)');
+  grad.addColorStop(0, 'rgba(6, 182, 212, 0.22)');
+  grad.addColorStop(0.45, 'rgba(99, 102, 241, 0.12)');
+  grad.addColorStop(0.85, 'rgba(6, 11, 24, 0.02)');
+  grad.addColorStop(1, 'rgba(6, 11, 24, 0)');
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, size, size);
 
@@ -97,8 +97,8 @@ export function createGridFloorTexture(maxAnisotropy: number): THREE.CanvasTextu
   for (let i = 0; i <= size; i += step) {
     const isMajor = i % (step * 4) === 0;
     ctx.strokeStyle = isMajor
-      ? 'rgba(110, 231, 183, 0.24)'
-      : 'rgba(20, 184, 166, 0.09)';
+      ? 'rgba(56, 189, 248, 0.24)'
+      : 'rgba(99, 102, 241, 0.11)';
     ctx.beginPath();
     ctx.moveTo(i, 0);
     ctx.lineTo(i, size);
@@ -147,9 +147,9 @@ export function createParticleGlowTexture(): THREE.CanvasTexture {
   const ctx = canvas.getContext('2d')!;
 
   const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-  grad.addColorStop(0, 'rgba(167, 243, 208, 1)');
-  grad.addColorStop(0.35, 'rgba(52, 211, 153, 0.55)');
-  grad.addColorStop(1, 'rgba(16, 185, 129, 0)');
+  grad.addColorStop(0, 'rgba(186, 230, 253, 1)');
+  grad.addColorStop(0.35, 'rgba(56, 189, 248, 0.55)');
+  grad.addColorStop(1, 'rgba(99, 102, 241, 0)');
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, size, size);
 
@@ -170,20 +170,20 @@ export function createVariableFaceTexture(
   const ctx = canvas.getContext('2d')!;
 
   const bgGrad = ctx.createLinearGradient(0, 0, 0, h);
-  bgGrad.addColorStop(0, data.highlighted ? '#0E3326' : '#0A221B');
-  bgGrad.addColorStop(1, '#05140E');
+  bgGrad.addColorStop(0, data.highlighted ? '#0E2854' : '#0A1A38');
+  bgGrad.addColorStop(1, '#050D1E');
   ctx.fillStyle = bgGrad;
   ctx.fillRect(0, 0, w, h);
 
   drawRoundedRect(ctx, 16, 16, w - 32, h - 32, 26);
-  ctx.strokeStyle = data.highlighted ? data.accentHex : 'rgba(110, 231, 183, 0.32)';
+  ctx.strokeStyle = data.highlighted ? data.accentHex : 'rgba(125, 211, 252, 0.42)';
   ctx.lineWidth = data.highlighted ? 7 : 3.5;
   ctx.stroke();
 
   // Header strip
   ctx.fillStyle = data.highlighted
-    ? 'rgba(74, 222, 128, 0.16)'
-    : 'rgba(20, 184, 166, 0.12)';
+    ? 'rgba(34, 211, 238, 0.18)'
+    : 'rgba(99, 102, 241, 0.16)';
   drawRoundedRect(ctx, 32, 32, w - 64, 86, 16);
   ctx.fill();
 
@@ -231,7 +231,7 @@ export function createStackFrameTexture(
   ctx.fill();
 
   // Depth pill left
-  ctx.fillStyle = 'rgba(5, 22, 16, 0.9)';
+  ctx.fillStyle = 'rgba(6, 11, 24, 0.94)';
   drawRoundedRect(ctx, 36, 36, 98, 58, 12);
   ctx.fill();
   ctx.strokeStyle = data.accentHex;
@@ -278,8 +278,8 @@ export function createSequenceBlockTexture(
   const ctx = canvas.getContext('2d')!;
 
   const grad = ctx.createLinearGradient(0, 0, 0, h);
-  grad.addColorStop(0, data.isNewest ? '#103D2D' : '#0B261D');
-  grad.addColorStop(1, '#06150F');
+  grad.addColorStop(0, data.isNewest ? '#0D365C' : '#0B1D3F');
+  grad.addColorStop(1, '#050D1E');
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, w, h);
 
@@ -314,9 +314,9 @@ export function createOperationBannerTexture(
   const ctx = canvas.getContext('2d')!;
 
   const grad = ctx.createLinearGradient(0, 0, w, 0);
-  grad.addColorStop(0, '#071F17');
-  grad.addColorStop(0.5, '#0D2F23');
-  grad.addColorStop(1, '#07221B');
+  grad.addColorStop(0, '#07122B');
+  grad.addColorStop(0.5, '#0E2047');
+  grad.addColorStop(1, '#121942');
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, w, h);
 
